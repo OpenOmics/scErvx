@@ -1,5 +1,6 @@
 {
     "images": {
-        "solo_te": "docker://asyakhleborodova/solo_te:v0.1.0"
+        "solo_te": "docker://asyakhleborodova/solo_te:v0.1.0",
+        "sc_te": "docker://asyakhleborodova/sc_te:v0.1.0"
     }
 }
