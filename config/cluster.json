@@ -11,5 +11,11 @@
               "time": "24:00:00",
               "partition": "norm",
               "threads": "8"
+      },
+    "scTE": {
+              "mem": "270g",
+              "time": "02:00:00",
+              "partition": "norm",
+              "threads": "20"
       }
 }
