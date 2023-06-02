@@ -1,0 +1,7 @@
+{
+    "references": {
+        "soloTE": {
+            "TE_annotation": "/data/OpenOmics/references/ervx/mm10_soloTE_10xgenomics/mm10_soloTE_10xgenomics.bed"
+        }
+    }
+}

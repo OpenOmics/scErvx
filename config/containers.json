@@ -1,4 +1,5 @@
 {
     "images": {
+        "solo_te": "docker://asyakhleborodova/solo_te:v0.1.0"
     }
 }

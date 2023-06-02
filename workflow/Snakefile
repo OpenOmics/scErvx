@@ -1,27 +1,85 @@
+
+
+
+###########################################################################
+# 10x genomics single-cell data (bam files) processed for ERVs
+###########################################################################
 # Python standard library
 from os.path import join
 from os import listdir
-import os, sys
+import os, sys, re
+import pandas as pd
 
 # 3rd party imports from pypi
 from snakemake.workflow import workflow as wf_api
 from snakemake.utils import R
+from snakemake.io import expand, glob_wildcards
 
 # Local imports
 from scripts.common import (
     allocated,
-    provided, 
+    provided,
     references,
     str_bool
 )
 
+configfile: 'config.json'
 
-# Final ouput files of the pipeline
-rule all:
+# Read in resource information,
+# containing information about 
+# threads, mem, walltimes, etc.
+# TODO: Add handler for when the
+# mode is set to local.
+with open(join('config', 'cluster.json')) as fh:
+    cluster = json.load(fh)
+
+workpath = config['project']['workpath']
+SAMPLES=config['samples']
+soloTE_annotation=config['references']['soloTE']['TE_annotation']
+
+rule All:
     input:
-        []
+        #SoloTE output, folder containing "matrix.mtx", "features.tsv", "barcodes.tsv" per sample
+        expand(join(workpath,"{sample}_SoloTE_output","matrix.mtx"), sample=SAMPLES),
+        expand(join(workpath,"{sample}_SoloTE_output","features.tsv"), sample=SAMPLES),
+        expand(join(workpath,"{sample}_SoloTE_output","barcodes.tsv"), sample=SAMPLES)
+rule soloTE:
+    """
+    SoloTE for improved analysis of transposable elements in single-cell RNA-Seq 
+    data using locus-specific expression. Generates barcodes.tsv  features.tsv  matrix.mtx
+    files for transposable elements. 
+    """
+    input: 
+        bam=join(workpath,"{sample}.bam")
+    output: 
+        mat=join(workpath,"{sample}_SoloTE_output","matrix.mtx"),
+        features=join(workpath,"{sample}_SoloTE_output","features.tsv"),
+        barcodes=join(workpath,"{sample}_SoloTE_output","barcodes.tsv")
+    params:
+        rname='pl_soloTE',
+        dir=directory("{sample}_SoloTE_output"),
+        prefix="{sample}"
+    threads: int(allocated("threads", "soloTE", cluster)),
+    container:config['images']['solo_te']
+    shell:"""
+    SoloTE_pipeline.py --threads {threads} --bam {input.bam} \
+        --teannotation {soloTE_annotation} \
+        --outputprefix {params.prefix} \
+        --outputdir {workpath}
+    """
 
-
-# Import rules 
-include: join("rules", "common.smk")
-include: join("rules", "hooks.smk")
+rule scTE:
+    """
+    """
+    input: 
+        bam=join(workpath,"{sample}.bam")
+    output:
+    params:
+        rname='pl_scTE',
+    threads: int(allocated("threads", "scTE", cluster))
+    container:config['images']['sc_te']
+    shell:"""
+     scTE -i {input.bam} -o results_scTE \
+     -x mm10.exclusive.idx \
+     --hdf5 True -CB CB -UMI UB -p {threads}
+    """

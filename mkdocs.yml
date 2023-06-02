@@ -1,13 +1,13 @@
 # Project Information
-site_name: baseline
+site_name: scErvx
 site_author: Skyler Kuhn
 site_description: >-
-  An awesome OpenOmics baseline pipeline
+  An awesome OpenOmics scErvx pipeline
 
 # Repository
-repo_name: OpenOmics/baseline
-repo_url: https://github.com/OpenOmics/baseline
-edit_uri: https://github.com/OpenOmics/baseline/edit/main/docs/
+repo_name: OpenOmics/scErvx
+repo_url: https://github.com/OpenOmics/scErvx
+edit_uri: https://github.com/OpenOmics/scErvx/edit/main/docs/
 
 # Extra
 extra_css:
@@ -98,10 +98,10 @@ markdown_extensions:
 nav:
   - About: index.md
   - Commands: 
-    - baseline run: usage/run.md
-    - baseline unlock: usage/unlock.md
-    - baseline install: usage/install.md
-    - baseline cache: usage/cache.md
+    - scErvx run: usage/run.md
+    - scErvx unlock: usage/unlock.md
+    - scErvx install: usage/install.md
+    - scErvx cache: usage/cache.md
   - FAQ:
     - General Questions: faq/questions.md
   - License: license.md

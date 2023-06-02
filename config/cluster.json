@@ -1,8 +1,15 @@
 {
     "__default__": {
         "threads": "4",
-        "mem": "8g",
+        "mem": "10g",
         "partition": "norm",
-        "time": "0-04:00:00"
-    }
+        "time": "0-04:00:00",
+        "gres": "lscratch:32"
+    },
+    "soloTE": {
+              "mem": "80g",
+              "time": "24:00:00",
+              "partition": "norm",
+              "threads": "8"
+      }
 }
