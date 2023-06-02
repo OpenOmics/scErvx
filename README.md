@@ -52,7 +52,7 @@ module load snakemake singularity
 ### Biowulf
 ```bash
 module load snakemake singularity
-./ervx run \
+./scErvx run \
     --input /data/NCBR/*.bam \
     --output /data/NCBR/project/results \
     --genome mm10 \
