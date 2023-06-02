@@ -48,6 +48,19 @@ module load snakemake singularity
 ./scErvx -h
 ```
 
+## Run
+### Biowulf
+```bash
+module load snakemake singularity
+./ervx run \
+    --input /data/NCBR/*.bam \
+    --output /data/NCBR/project/results \
+    --genome mm10 \
+    --mode slurm \
+    --sif-cache /data/NCBR/dev/SIFs/ \
+    --dry-run
+```
+
 ## Contribute 
 This site is a living document, created for and by members like you. scErvx is maintained by the members of OpenOmics and is improved by continous feedback! We encourage you to contribute new content and make improvements to existing content via pull request to our [GitHub repository](https://github.com/OpenOmics/scErvx).
 
