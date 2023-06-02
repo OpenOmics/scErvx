@@ -2,6 +2,9 @@
     "references": {
         "soloTE": {
             "TE_annotation": "/data/OpenOmics/references/ervx/mm10_soloTE_10xgenomics/mm10_soloTE_10xgenomics.bed"
+        },
+        "scTE": {
+            "genome_indices": "/data/OpenOmics/references/ervx/mm10_scTE_10xgenomics/mm10.exclusive.idx"
         }
     }
 }
