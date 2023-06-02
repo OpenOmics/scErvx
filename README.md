@@ -57,7 +57,7 @@ module load snakemake singularity
     --output /data/NCBR/project/results \
     --genome mm10 \
     --mode slurm \
-    --sif-cache /data/NCBR/dev/SIFs/ \
+    --sif-cache /data/OpenOmics/SIFs \
     --dry-run
 ```
 
