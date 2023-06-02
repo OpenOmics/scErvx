@@ -36,13 +36,14 @@ with open(join('config', 'cluster.json')) as fh:
 workpath = config['project']['workpath']
 SAMPLES=config['samples']
 soloTE_annotation=config['references']['soloTE']['TE_annotation']
-
+genome_indices=config['references']['scTE']['genome_indices']
 rule All:
     input:
         #SoloTE output, folder containing "matrix.mtx", "features.tsv", "barcodes.tsv" per sample
         expand(join(workpath,"{sample}_SoloTE_output","matrix.mtx"), sample=SAMPLES),
         expand(join(workpath,"{sample}_SoloTE_output","features.tsv"), sample=SAMPLES),
-        expand(join(workpath,"{sample}_SoloTE_output","barcodes.tsv"), sample=SAMPLES)
+        expand(join(workpath,"{sample}_SoloTE_output","barcodes.tsv"), sample=SAMPLES),
+        expand(join(workpath,"scTE_output","{sample}.csv"),sample=SAMPLES)
 rule soloTE:
     """
     SoloTE for improved analysis of transposable elements in single-cell RNA-Seq 
@@ -74,12 +75,17 @@ rule scTE:
     input: 
         bam=join(workpath,"{sample}.bam")
     output:
+        join(workpath,"scTE_output","{sample}.csv")
     params:
         rname='pl_scTE',
+        name="{sample}",
+        res_dir=join(workpath,"scTE_output")
     threads: int(allocated("threads", "scTE", cluster))
     container:config['images']['sc_te']
     shell:"""
-     scTE -i {input.bam} -o results_scTE \
-     -x mm10.exclusive.idx \
-     --hdf5 True -CB CB -UMI UB -p {threads}
+    mkdir -p {params.res_dir}
+    scTE -i {input.bam} -o {params.name} \
+        -x {genome_indices} \
+        --hdf5 True -CB CB -UMI UB -p {threads}
+    mv {param.name} {params.res_dir}/
     """
