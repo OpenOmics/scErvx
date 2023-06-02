@@ -87,5 +87,5 @@ rule scTE:
     scTE -i {input.bam} -o {params.name} \
         -x {genome_indices} \
         --hdf5 True -CB CB -UMI UB -p {threads}
-    mv {param.name} {params.res_dir}/
+    mv {params.name} {params.res_dir}/
     """
