@@ -1,0 +1,10 @@
+{
+    "references": {
+        "soloTE": {
+            "TE_annotation": "/data/OpenOmics/references/ervx/GRCh38_2020A_soloTE_10xgenomics/GRCh38_2020A_soloTE_10xgenomics.bed"
+        },
+        "scTE": {
+            "genome_indices": "/data/OpenOmics/references/ervx/GRCh38_2020A_scTE_10xgenomics/hg38.exclusive.idx"
+        }
+    }
+}
