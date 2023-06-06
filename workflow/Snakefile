@@ -86,6 +86,6 @@ rule scTE:
     mkdir -p {params.res_dir}
     scTE -i {input.bam} -o {params.name} \
         -x {genome_indices} \
-        --hdf5 True -CB CB -UMI UB -p {threads}
+        --hdf5 False -CB CB -UMI UB -p {threads}
     mv {params.name} {params.res_dir}/
     """
