@@ -1,0 +1,10 @@
+{
+    "references": {
+        "soloTE": {
+            "TE_annotation": "/hpcdata/dir/NCBR-337/references/GRCh38_2020A_soloTE_10xgenomics/GRCh38_2020A_soloTE_10xgenomics.bed"
+        },
+        "scTE": {
+            "genome_indices": "/hpcdata/dir/NCBR-337/references/GRCh38_2020A_scTE_10xgenomics/hg38.exclusive.idx"
+        }
+    }
+}

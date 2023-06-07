@@ -1,0 +1,15 @@
+{
+    "__default__": {
+        "threads": "4",
+        "mem": "10G",
+        "partition": ""
+    },
+    "soloTE": {
+              "mem": "10G",
+              "threads": "8"
+      },
+    "scTE": {
+              "mem": "15G",
+              "threads": "16"
+      }
+}
