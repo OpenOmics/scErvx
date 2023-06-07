@@ -61,6 +61,19 @@ module load snakemake singularity
     --dry-run
 ```
 
+## Run
+### Locus
+```bash
+./scErvx run \
+    --input /hpcdata/dir/NCBR-337/single_cell_input_data/*.bam \
+    --output /hpcdata/dir/NCBR-337/single_cell_ervs_results/  \
+    --genome mm10 \
+    --sif-cache /hpcdata/dir/NCBR-337/SIFs \
+    --mode uge \
+    --tmp-dir /hpcdata/scratch/ \
+    --dry-run
+```
+
 ## Contribute 
 This site is a living document, created for and by members like you. scErvx is maintained by the members of OpenOmics and is improved by continous feedback! We encourage you to contribute new content and make improvements to existing content via pull request to our [GitHub repository](https://github.com/OpenOmics/scErvx).
 
