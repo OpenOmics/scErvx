@@ -61,7 +61,6 @@ module load snakemake singularity
     --dry-run
 ```
 
-## Run
 ### Locus
 ```bash
 ./scErvx run \
