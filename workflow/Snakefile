@@ -24,14 +24,21 @@ from scripts.common import (
 )
 
 configfile: 'config.json'
-
+mode = config['options']['mode']
 # Read in resource information,
 # containing information about 
 # threads, mem, walltimes, etc.
 # TODO: Add handler for when the
 # mode is set to local.
-with open(join('config', 'cluster.json')) as fh:
-    cluster = json.load(fh)
+if mode == 'slurm':
+    with open(join('config', 'cluster_slurm.json')) as fh:
+        cluster = json.load(fh)
+elif mode == 'uge':
+    with open(join('config', 'cluster_uge.json')) as fh:
+        cluster = json.load(fh)
+else:
+    with open(join('config', 'cluster_slurm.json')) as fh:
+        cluster = json.load(fh)
 
 workpath = config['project']['workpath']
 SAMPLES=config['samples']

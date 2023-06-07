@@ -300,7 +300,7 @@ def parsed_arguments(name, description):
                                 submitting the pipeline to a jobscheduler, this option
                                 overrides the default name of the master job. This can 
                                 be useful for tracking the progress or status of a run, 
-                                default: pl:{2}.
+                                default: pl_{2}.
                                   Example: --job-name {2}_03-14.1592
           --dry-run             
                                 Does not execute anything. Only displays what steps in
@@ -435,7 +435,7 @@ def parsed_arguments(name, description):
         type = str,
         required = False,
         default = "slurm",
-        choices = ['slurm', 'local'],
+        choices = ['slurm', 'uge', 'local'],
         help = argparse.SUPPRESS
     )
 
@@ -444,7 +444,7 @@ def parsed_arguments(name, description):
         '--job-name',
         type = str,
         required = False,
-        default = 'pl:{}'.format(name),
+        default = 'pl_{}'.format(name),
         help = argparse.SUPPRESS
     )
 

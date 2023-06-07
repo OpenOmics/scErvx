@@ -235,11 +235,38 @@ EOF
     chmod +x kickoff.sh
     job_id=$(sbatch kickoff.sh | tee -a "$3"/logfiles/master.log)
         ;;
-      *)  echo "${executor} is not available." && \
-          fatal "Failed to provide valid execution backend: ${executor}. Please use slurm."
+    uge)
+          # Create directory for logfiles
+          mkdir -p "$3/logfiles/ugefiles/"
+          UGE_DIR="$3/logfiles/ugefiles"
+          CLUSTER_OPTS="qsub -pe threaded {cluster.threads} {cluster.partition} -l h_vmem={cluster.mem} -N {params.rname} -o '$UGE_DIR/uge-\\\$JOB_ID-{params.rname}.out' -j y"
+          # Create qsub script for master job
+    cat << EOF > kickoff.sh
+#!/usr/bin/env bash
+#$ -pe threaded 16
+#$ -l h_vmem=6G
+#$ -N "$2"
+#$ -o "$3/logfiles/snakemake.log"
+#$ -j y
+set -euo pipefail
+snakemake --latency-wait 120 -s "$3/workflow/Snakefile" -d "$3" \\
+  --use-singularity --singularity-args "'-B $4'" \\
+  --configfile="$3/config.json" \\
+  --printshellcmds --cluster-config "$3"/config/cluster_uge.json \\
+  --cluster "${CLUSTER_OPTS}" --keep-going --restart-times 3 -j 500 \\
+  --rerun-incomplete --stats "$3/logfiles/runtime_statistics.json" \\
+  --keep-remote --local-cores 14 2>&1
+# Create summary report
+snakemake -d "$3" -s "$3/workflow/Snakefile" \\
+  --report "Snakemake_Report.html"
+EOF
+    chmod +x kickoff.sh
+    job_id=$(qsub -terse kickoff.sh | tee -a "$3"/logfiles/master.log)
         ;;
-    esac
-
+      *)  echo "${executor} is not available." && \
+          fatal "Failed to provide valid execution backend: ${executor}. Please use slurm or uge."
+        ;;
+    esac          
   # Return exit-code of pipeline sumbission
   echo "$job_id"
 }
@@ -258,6 +285,7 @@ function main(){
   # Positional Argument for Snakemake Executor
   case $1 in
     slurm) Arguments["e"]="$1";;
+    uge) Arguments["e"]="$1";;
     -h    | --help | help) usage && exit 0;;
     -*    | --*) err "Error: Failed to provide required positional argument: <slurm>."; usage && exit 1;;
     *) err "Error: Failed to provide valid positional argument. '${1}' is not supported. Valid option(s) are slurm"; usage && exit 1;;
