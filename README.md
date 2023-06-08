@@ -63,6 +63,7 @@ module load snakemake singularity
 
 ### Locus
 ```bash
+module load snakemake
 ./scErvx run \
     --input /hpcdata/dir/NCBR-337/single_cell_input_data/*.bam \
     --output /hpcdata/dir/NCBR-337/single_cell_ervs_results/  \
