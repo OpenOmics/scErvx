@@ -94,5 +94,5 @@ rule scTE:
     scTE -i {input.bam} -o {params.name} \
         -x {genome_indices} \
         --hdf5 False -CB CB -UMI UB -p {threads}
-    mv {params.name} {params.res_dir}/
+    mv {params.name}.csv {params.res_dir}/
     """
