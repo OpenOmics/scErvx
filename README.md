@@ -7,7 +7,7 @@
   [![tests](https://github.com/OpenOmics/scErvx/workflows/tests/badge.svg)](https://github.com/OpenOmics/scErvx/actions/workflows/main.yaml) [![docs](https://github.com/OpenOmics/scErvx/workflows/docs/badge.svg)](https://github.com/OpenOmics/scErvx/actions/workflows/docs.yml) [![GitHub issues](https://img.shields.io/github/issues/OpenOmics/scErvx?color=brightgreen)](https://github.com/OpenOmics/scErvx/issues)  [![GitHub license](https://img.shields.io/github/license/OpenOmics/scErvx)](https://github.com/OpenOmics/scErvx/blob/main/LICENSE) 
   
   <i>
-    This is the home of the pipeline, scErvx. Its long-term goals: to accurately ...insert goal, to infer ...insert goal, and to boldly ...insert goal like no pipeline before!
+    This is the home of the pipeline, scErvx. Its long-term goals: to accurately infer single-cell endogenous retrovirus expression like no pipeline before!
   </i>
 </div>
 
