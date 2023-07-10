@@ -65,10 +65,10 @@ module load snakemake singularity
 ```bash
 module load snakemake
 ./scErvx run \
-    --input /hpcdata/dir/NCBR-337/single_cell_input_data/*.bam \
-    --output /hpcdata/dir/NCBR-337/single_cell_ervs_results/  \
+    --input /hpcdata/your_dir/single_cell_input_data/*.bam \
+    --output /hpcdata/your_dir/single_cell_ervs_results/  \
     --genome mm10 \
-    --sif-cache /hpcdata/dir/NCBR-337/SIFs \
+    --sif-cache /hpcdata/lpd_mis/Belkaid_Lab_RNASeq_Data/data_for_ERV_pipelines/SIFs \
     --mode uge \
     --tmp-dir /hpcdata/scratch/ \
     --dry-run
