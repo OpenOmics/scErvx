@@ -1,10 +1,10 @@
 {
     "references": {
         "soloTE": {
-            "TE_annotation": "/hpcdata/dir/NCBR-337/references/mm10_soloTE_10xgenomics/mm10_soloTE_10xgenomics.bed"
+            "TE_annotation": "/hpcdata/lpd_mis/Belkaid_Lab_RNASeq_Data/data_for_ERV_pipelines/mm10_soloTE_10xgenomics/mm10_soloTE_10xgenomics.bed"
         },
         "scTE": {
-            "genome_indices": "/hpcdata/dir/NCBR-337/references/mm10_scTE_10xgenomics/mm10.exclusive.idx"
+            "genome_indices": "/hpcdata/lpd_mis/Belkaid_Lab_RNASeq_Data/data_for_ERV_pipelines/mm10_scTE_10xgenomics/mm10.exclusive.idx"
         }
     }
 }
