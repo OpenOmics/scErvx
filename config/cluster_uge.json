@@ -9,7 +9,7 @@
               "threads": "8"
       },
     "scTE": {
-              "mem": "15G",
-              "threads": "16"
+              "mem": "130G,himem",
+              "threads": "3"
       }
 }
