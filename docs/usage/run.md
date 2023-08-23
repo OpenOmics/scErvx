@@ -150,24 +150,63 @@ Each of the following arguments are optional, and do not need to be provided.
 > ***Example:*** `--help`
 
 ## 3. Example
+
+### Biowulf
 ```bash 
 # Step 1.) Grab an interactive node,
 # do not run on head node!
 srun -N 1 -n 1 --time=1:00:00 --mem=8gb  --cpus-per-task=2 --pty bash
 module purge
 module load singularity snakemake
-
+cd scErvx
 # Step 2A.) Dry-run the pipeline
-./scErvx run --input .tests/*.R?.fastq.gz \
-                  --output /data/$USER/output \
-                  --mode slurm \
-                  --dry-run
+./scErvx run \
+    --input /data/NCBR/*.bam \
+    --output /data/NCBR/project/results \
+    --genome mm10 \
+    --mode slurm \
+    --sif-cache /data/OpenOmics/SIFs \
+    --dry-run
 
 # Step 2B.) Run the scErvx pipeline
 # The slurm mode will submit jobs to 
 # the cluster. It is recommended running 
 # the pipeline in this mode.
-./scErvx run --input .tests/*.R?.fastq.gz \
-                  --output /data/$USER/output \
-                  --mode slurm
+./scErvx run \
+    --input /data/NCBR/*.bam \
+    --output /data/NCBR/project/results \
+    --genome mm10 \
+    --mode slurm \
+    --sif-cache /data/OpenOmics/SIFs \
+    --dry-run
+```
+### Locus
+```bash
+# Step 1.) Grab an interactive node,
+qrsh -l h_vmem=4G -pe threaded 4
+module load snakemake
+# Change your working directory
+cd scErvx
+# On Locus --mode --tmp-dir --shared-resources --sif-cache are required options.
+# Step 2A.) Dry-run the pipeline
+
+./scErvx run \
+    --input /hpcdata/your_dir/single_cell_input_data/*.bam \
+    --output /hpcdata/your_dir/single_cell_ervs_results/  \
+    --genome mm10 \
+    --sif-cache /hpcdata/openomics/SIFs \
+    --mode uge \
+    --tmp-dir /hpcdata/scratch/ \
+    --dry-run
+
+# Step 2B.) Run the ervx pipeline
+
+./scErvx run \
+    --input /hpcdata/your_dir/single_cell_input_data/*.bam \
+    --output /hpcdata/your_dir/single_cell_ervs_results/  \
+    --genome mm10 \
+    --sif-cache /hpcdata/openomics/SIFs \
+    --mode uge \
+    --tmp-dir /hpcdata/scratch/ \
+    --dry-run
 ```

@@ -52,6 +52,7 @@ module load snakemake singularity
 ### Biowulf
 ```bash
 module load snakemake singularity
+cd scErvx
 ./scErvx run \
     --input /data/NCBR/*.bam \
     --output /data/NCBR/project/results \
@@ -63,12 +64,14 @@ module load snakemake singularity
 
 ### Locus
 ```bash
+# On Locus --mode --tmp-dir --shared-resources --sif-cache are required options.
 module load snakemake
+cd scErvx
 ./scErvx run \
     --input /hpcdata/your_dir/single_cell_input_data/*.bam \
     --output /hpcdata/your_dir/single_cell_ervs_results/  \
     --genome mm10 \
-    --sif-cache /hpcdata/lpd_mis/Belkaid_Lab_RNASeq_Data/data_for_ERV_pipelines/SIFs \
+    --sif-cache /hpcdata/openomics/SIFs \
     --mode uge \
     --tmp-dir /hpcdata/scratch/ \
     --dry-run
