@@ -1,10 +1,10 @@
 {
     "references": {
         "soloTE": {
-            "TE_annotation": "/hpcdata/lpd_mis/Belkaid_Lab_RNASeq_Data/data_for_ERV_pipelines/GRCh38_2020A_soloTE_10xgenomics/GRCh38_2020A_soloTE_10xgenomics.bed"
+            "TE_annotation": "/hpcdata/openomics/references/scErvx/GRCh38_2020A_soloTE_10xgenomics/GRCh38_2020A_soloTE_10xgenomics.bed"
         },
         "scTE": {
-            "genome_indices": "/hpcdata/lpd_mis/Belkaid_Lab_RNASeq_Data/data_for_ERV_pipelines/GRCh38_2020A_scTE_10xgenomics/hg38.exclusive.idx"
+            "genome_indices": "/hpcdata/openomics/references/scErvx/GRCh38_2020A_scTE_10xgenomics/hg38.exclusive.idx"
         }
     }
 }
